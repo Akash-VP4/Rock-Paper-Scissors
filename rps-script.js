@@ -1,13 +1,13 @@
 function getComputerChoice() {
-  value = Math.random();
-  return parseInt(value * 10) % 3;
+  let value = Math.random();
+  value = parseInt(value * 10) % 3;
+  const arr = ["rock", "paper", "scissor"];
+  return arr[value];
 }
-// console.log(getComputerChoice())
 
 function getHumanChoice() {
-  let humenChoice = prompt(
-    "Select your choice from below:\n 1. for Rock\n 2. for Paper\n 3. for Scissors "
-  );
+  let humenChoice = prompt("Enter your choice :\n Rock\n Paper\n Scissor");
+  humenChoice = humenChoice.toLowerCase();
   return humenChoice;
 }
 
@@ -15,55 +15,49 @@ function PlayRound() {
   let humenScore = 0;
   let computerScore = 0;
 
-
-  for (let i = 0; i < 2; i++) {
-    let humenChoice = getHumanChoice();
-    let computerChoice = getComputerChoice() + 1;
-
-    let diff = humenChoice - computerChoice;
-    console.log(diff)
-    if (diff === 1) {
+  for (let i = 0; i < 5; i++) {
+    humenChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    if (
+      (humenChoice == "paper" && computerChoice == "rock") ||
+      (humenChoice == "scissor" && computerChoice == "paper") ||
+      (humenChoice == "rock" && computerChoice == "scissor")
+    ) {
       humenScore++;
-    } else if (diff === -1) {
+    } else if (
+      (computerChoice == "paper" && humenChoice == "rock") ||
+      (computerChoice == "scissor" && humenChoice == "paper") ||
+      (computerChoice == "rock" && humenChoice == "scissor")
+    ) {
       computerScore++;
-    } else if (diff === 2) {
-      computerScore++;
-    } else if (diff === -2) {
+    } else if (computerChoice == humenChoice) {
       humenScore++;
+      computerScore++;
     } else {
-      humenScore++;
+      alert("Incorrect option!!");
       computerScore++;
+      break;
     }
 
     alert(
-      "1->Rock\n2->Paper\n3->Scissors\nHuman choice: " +
-        humenChoice +
-        "\n Computer choice: " +
-        computerChoice
+      "Human choice: " + humenChoice + "\n Computer choice: " + computerChoice
     );
-
   }
 
   alert("Computer score: " + computerScore + "\n Humen Score: " + humenScore);
-  
-  return [humenScore,computerScore];
 
+  return [humenScore, computerScore];
 }
 
-
-function playgame(){
-
-  const [humenScore,computerScore] = PlayRound();
-  if(humenScore>computerScore){
-    alert("Congratulations you won the game!!")
-  }else if(computerScore>humenScore){
-    alert("You lost the game!")
-  }else{
-    alert("It's a tie")
+function playgame() {
+  const [humenScore, computerScore] = PlayRound();
+  if (humenScore > computerScore) {
+    alert("Congratulations you won the game!!");
+  } else if (computerScore > humenScore) {
+    alert("You lost the game!");
+  } else {
+    alert("It's a tie");
   }
-
-
 }
 
-playgame()
-
+playgame();
