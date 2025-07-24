@@ -5,12 +5,6 @@ function getComputerChoice() {
   return arr[value];
 }
 
-// function getHumanChoice() {
-//   let humenChoice = prompt("Enter your choice :\n Rock\n Paper\n Scissor");
-//   humenChoice = humenChoice.toLowerCase();
-//   return humenChoice;
-// }
-
 function PlayRound(humenChoice, computerChoice) {
   let humenScore = 0;
   let computerScore = 0;
@@ -35,28 +29,49 @@ function PlayRound(humenChoice, computerChoice) {
   return [humenScore, computerScore];
 }
 
+let count = 0;
+let TotalHumenScore = 0;
+let TotalComputerScore = 0;
+
 function playgame() {
   const choice = document.querySelectorAll("button");
   choice.forEach((button) => {
     button.addEventListener("click", () => {
       computerChoice = getComputerChoice();
 
-      let result = document.querySelector("#results");
-      let score = document.createElement("div");
-      score.classList.add("score");
+      let [humenScore, computerScore] = PlayRound(button.id, computerChoice);
+      count++;
 
-      const [humenScore, computerScore] = PlayRound(button.id, computerChoice);
+      TotalComputerScore += computerScore;
+      TotalHumenScore += humenScore;
 
-      if (humenScore > computerScore) {
-        score.textContent = "Congratulations you won the game!!";
-        result.appendChild(score);
-      } else if (computerScore > humenScore) {
-        score.textContent = "You lost the game!";
-        result.appendChild(score);
-      } else {
-        score.textContent = "It's a tie";
-        result.appendChild(score);
-        
+      // let scoretable = document.querySelector(".match");
+      // let humScore = document.createElement("div");
+      // humScore.classList.add("humScore");
+      const updateScore = document.querySelector(".humen");
+      updateScore.innerHTML =
+        "Your score: " +
+        TotalHumenScore +
+        " Computer Score: " +
+        TotalComputerScore;
+
+      if (count == 5) {
+        let result = document.querySelector("#results");
+        let score = document.createElement("div");
+        score.classList.add("score");
+
+        if (humenScore > computerScore) {
+          score.textContent = "Congratulations you won the game!!";
+          result.appendChild(score);
+        } else if (computerScore > humenScore) {
+          score.textContent = "You lost the game!";
+          result.appendChild(score);
+        } else {
+          score.textContent = "It's a tie";
+          result.appendChild(score);
+        }
+        count = 0;
+        result.removeChild;
       }
     });
   });
