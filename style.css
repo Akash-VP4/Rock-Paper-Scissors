@@ -1,0 +1,35 @@
+
+
+.game{
+  display: flex;
+  /* padding: 100px; */
+  flex-direction: column;
+  gap: 40px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px;
+}
+
+#container{
+  display: flex;
+  gap: 16px;
+  
+}
+
+button{
+  padding: 20px;
+  border-radius: 8px;
+  border-color: aliceblue;
+}
+
+.match{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 24px;
+}
+
+#results{
+  font-size: 30px;
+}
+

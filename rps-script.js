@@ -45,34 +45,33 @@ function playgame() {
       TotalComputerScore += computerScore;
       TotalHumenScore += humenScore;
 
-      // let scoretable = document.querySelector(".match");
-      // let humScore = document.createElement("div");
-      // humScore.classList.add("humScore");
-      const updateScore = document.querySelector(".humen");
+      const updateChoice = document.querySelector(".choices");
+      updateChoice.innerHTML =
+        "Your choice: " + button.id + " Computer choice: " + computerChoice;
+
+      const updateScore = document.querySelector(".scores");
       updateScore.innerHTML =
         "Your score: " +
         TotalHumenScore +
         " Computer Score: " +
         TotalComputerScore;
 
-      if (count == 5) {
-        let result = document.querySelector("#results");
-        let score = document.createElement("div");
-        score.classList.add("score");
+      const result = document.querySelector("#results");
+      let text = "";
 
+      if (count == 5) {
         if (humenScore > computerScore) {
-          score.textContent = "Congratulations you won the game!!";
-          result.appendChild(score);
+          text = "Congratulations you won the game!!";
         } else if (computerScore > humenScore) {
-          score.textContent = "You lost the game!";
-          result.appendChild(score);
+          text = "You lost the game!";
         } else {
-          score.textContent = "It's a tie";
-          result.appendChild(score);
+          text = "It's a tie";
         }
         count = 0;
-        result.removeChild;
+        TotalComputerScore=0
+        TotalHumenScore=0
       }
+      result.textContent = text;
     });
   });
 }
