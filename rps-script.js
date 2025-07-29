@@ -60,9 +60,9 @@ function playgame() {
       let text = "";
 
       if (count == 5) {
-        if (humenScore > computerScore) {
+        if (TotalComputerScore < TotalHumenScore) {
           text = "Congratulations you won the game!!";
-        } else if (computerScore > humenScore) {
+        } else if (TotalComputerScore > TotalHumenScore) {
           text = "You lost the game!";
         } else {
           text = "It's a tie";
@@ -70,6 +70,7 @@ function playgame() {
         count = 0;
         TotalComputerScore=0
         TotalHumenScore=0
+        
       }
       result.textContent = text;
     });
